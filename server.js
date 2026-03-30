@@ -7,7 +7,11 @@ const app = express();
 
 /* Middleware */
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 
 /* Port */
 const PORT = process.env.PORT || 5000;
@@ -54,5 +58,5 @@ res.status(500).send("Error saving feedback");
 
 /* Start Server */
 app.listen(PORT, () => {
-console.log("Server running on port ${PORT} 🚀");
+console.log(`Server running on port ${PORT} 🚀`);
 });
